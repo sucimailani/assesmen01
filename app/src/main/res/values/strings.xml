@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Laundry</string>
+    <string name="banner">Banner</string>
+    <string name="nama_pemesan">Nama Pemesan</string>
+    <string name="nomor_hp">Nomor HP</string>
+    <string name="jenis_layanan">Jenis Layanan</string>
+    <string name="berat_cucian">Berat Cucian (kg)</string>
+    <string name="layanan_reguler">Reguler</string>
+    <string name="layanan_express">Express</string>
+    <string name="layanan_kilat">Kilat</string>
+    <string name="submit">Kirim</string>
 </resources>
