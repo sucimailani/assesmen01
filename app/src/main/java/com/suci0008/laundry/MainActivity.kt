@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -22,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -63,7 +66,7 @@ fun MainScreen() {
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
-                )
+                ),
             )
         }
     ) { innerPadding ->
@@ -79,6 +82,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
     var layanan by remember { mutableStateOf("Reguler") }
     var berat by remember { mutableStateOf(TextFieldValue()) }
     var expanded by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
 
     val layananOptions = listOf("Reguler", "Express", "Kilat")
     val hargaPerKg = when (layanan) {
@@ -103,7 +107,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = nama,
             onValueChange = { nama = it },
-            label = { Text(stringResource(id = R.string.nama_pemesan))},
+            label = { Text(stringResource(id = R.string.customer_name))},
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -116,7 +120,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             value = layanan,
             onValueChange = {},
             readOnly = true,
-            label = { Text(stringResource(id = R.string.jenis_layanan))},
+            label = { Text(stringResource(id = R.string.service_type))},
             modifier = Modifier.menuAnchor().fillMaxWidth(),
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
@@ -144,22 +148,39 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = berat,
             onValueChange = { berat = it},
-            label = { Text("Berat Cucian (kg)")},
+            label = { Text(text = stringResource(id = R.string.laundry_weight))},
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = { showDialog = true },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = stringResource(id = R.string.submit))
+        }
 
-        Text(
-            text = "Harga per kg: Rp$hargaPerKg",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = "Total: Rp${String.format("%,.0f", totalHarga)}",
-            style = MaterialTheme.typography.bodyLarge
-        )
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = {showDialog = false },
+                title = { Text(text = "Total Biaya Laundry")},
+                text = {
+                    Column {
+                        Text(text = "Nama: ${nama.text}")
+                        Text(text = "Layanan: $layanan")
+                        Text(text = "Berat: $beratCucian kg")
+                        Text(text = "Harga per kg: Rp$hargaPerKg")
+                        Text(text = "Total: Rp${String.format("%,.0f", totalHarga)}")
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = { showDialog = false}) {
+                        Text("OK")
+                    }
+                }
+            )
+        }
     }
-
 }
+
 
 
 @Preview(showBackground = true)
