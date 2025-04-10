@@ -10,8 +10,8 @@
     <string name="submit">Pesan</string>
     <string name="laundry_weight">Berat Cucian (kg)</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="copyright">Pemesanan Laundry merupakan sebuah aplikasi Android untuk
-    jasa laundry sehingga seseorang dapat mempermudah pekerjaannya .\n\nAplikasi ini dibuat untuk kelas Pemrograman untuk Perangkat Bergerak 1.\n\nCopyright © 2024-2025
-    Suci Mailanisafitri.\nAll rights reserved.</string>
+    <string name="copyright">Pemesanan Laundry merupakan sebuah aplikasi Android untuk jasa laundry sehingga seseorang dapat mempermudah pekerjaannya. \n\nAplikasi ini dibuat untuk kelas Pemrograman untuk Perangkat Bergerak 1. \n\nCopyright © 2024–2025 Suci Mailanisafitri.\n\nAll rights reserved.</string>
     <string name="back">Kembali</string>
+    <string name="share">Bagikan</string>
+    <string name="share_template">Pemesanan Laundry\n--------------------------\nNama: %1$s\nLayanan: %2$s\nBerat: %3$.1f kg\nHarga per kg: Rp%4$d\nTotal: Rp%5$s</string>
 </resources>
